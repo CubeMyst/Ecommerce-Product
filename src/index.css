@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Kumbh';
+    src: url(./assets/font/KumbhSans.ttf), format('opentype');
+}
