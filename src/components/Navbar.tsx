@@ -2,19 +2,11 @@ import { useState } from "react";
 import { Logo } from "../assets/icons/Icons";
 import NavItem from "./NavItem";
 import CartModal from "./CartModal";
-
-const items = [
-  {
-    id: 0,
-    name: "Fall Limited Edition Sneakers",
-    img: "src/assets/img/image-product-1-thumbnail.jpg",
-    nowPrice: 125,
-    count: 0,
-  },
-];
+import { useStore } from "../utils/CartContext";
 
 export default function Navbar() {
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
+  const { items } = useStore();
 
   const handleCartButtonClick = () => {
     setIsCartModalOpen((prev) => !prev);
@@ -33,7 +25,12 @@ export default function Navbar() {
             <NavItem href="#" text="Contact" />
           </ul>
         </section>
-        <section className="flex gap-12">
+        <section className="flex relative gap-12">
+          {items.length > 0 && (
+            <div className="flex justify-center items-center bg-Orange text-white font-bold absolute w-5 h-4 text-[12px] rounded-full z-10 left-4">
+              {items.map((item) => item.count)}
+            </div>
+          )}
           <button
             className="hover:opacity-100 transition-opacity duration-200 opacity-60"
             onClick={handleCartButtonClick}
@@ -55,8 +52,8 @@ export default function Navbar() {
           </button>
         </section>
       </main>
-      {isCartModalOpen && <CartModal items={[items[0]]} />}
-      <div className="border absolute bottom-7 -z-10 right-0 left-0"></div>
+      {isCartModalOpen && <CartModal />}
+      <div className="relative bg-DarkBlue-900 inset-0 border-t -top-7"></div>
     </nav>
   );
 }
