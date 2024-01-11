@@ -1,4 +1,4 @@
-import { CartProvider } from "./utils/cartContext";
+import { CartProvider } from "./utils/CartContext";
 import MainContainer from "./components/MainContainer";
 
 // const thumbnailImages = [

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Navbar from "./Navbar";
 import Gallery from "./Gallery";
-import { useCart } from "../utils/cartContext";
+import { useCart } from "../utils/CartContext";
 
 const mainImageDefault = "src/assets/img/image-product-1.jpg";
 const discount = 0.5;
@@ -17,13 +17,14 @@ export default function MainContainer() {
 
   const { dispatch } = useCart();
 
+
   const handleAddToCart = () => {
     const newItem = {
       id: 0,
       name: "Fall Limited Edition Sneakers",
       img: "src/assets/img/image-product-1-thumbnail.jpg",
-      nowPrice: 125,
-      count: 1,
+      nowPrice: mount,
+      count: count,
     };
 
     dispatch({ type: "ADD_TO_CART", payload: newItem });
