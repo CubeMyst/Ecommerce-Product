@@ -1,10 +1,8 @@
-export default function CartModal({
-  items,
-}: {
-  items: [
-    { id: number; name: string; img: string; nowPrice: number; count: number }
-  ];
-}) {
+import { useStore } from "../utils/CartContext";
+
+export default function CartModal() {
+  const { items } = useStore()
+
   return (
     <div className="w-72 h-48 flex flex-col justify-between items-center right-0 top-20 absolute bg-white p-4 rounded-lg shadow-2xl z-10">
       <div className="text-start">
@@ -27,8 +25,8 @@ export default function CartModal({
                 <div className="flex flex-col">
                   <h1 className="text-sm">{item.name}</h1>
                   <p>
-                    ${item.nowPrice} x {item.count} = $
-                    {item.nowPrice * item.count}
+                    ${item.price} x {item.count} = $
+                    {item.nowPrice}
                   </p>
                 </div>
                 <button className="bg-Orange text-white w-full h-12 rounded-lg">
