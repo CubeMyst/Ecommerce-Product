@@ -11,7 +11,7 @@ export default function MainContainer() {
   const [mainImage, setMainImage] = useState(mainImageDefault);
   const [mount, setMount] = useState<number>(price);
   const [count, setCount] = useState<number>(1);
-  const { items, addToCart } = useStore();
+  const { items, addToCart, removeFromCart } = useStore();
 
   const handleThumbnailClick = (newImage: string) => {
     setMainImage(newImage);
@@ -27,10 +27,11 @@ export default function MainContainer() {
       count: count,
     };
 
-    if (items.length > 0 && items.length < 2) {
+    if (items.length < 1) {
       addToCart(newItem)
     } else {
-      alert("You can only add 2 items to the cart");
+      removeFromCart(0)
+      addToCart(newItem)
     }
   };
 
@@ -79,7 +80,7 @@ export default function MainContainer() {
           <del className="opacity-30 font-bold pt-2 pb-8">${mount * 2}.00</del>
           <section className="flex justify-between w-full">
             <section className="flex justify-center items-center gap-5 bg-DarkBlue-600 rounded-md">
-              <button className="text-Orange bg-DarkBlue-600 p-3 rounded-md font-bold text-xl" onClick={handleDecrease}>
+              <button className="text-Orange bg-DarkBlue-600 p-3 rounded-md font-bold text-xl hover:opacity-65 transition-all duration-200" onClick={handleDecrease}>
                 <svg width="12" height="4" xmlns="http://www.w3.org/2000/svg">
                   <defs>
                     <path
@@ -91,7 +92,7 @@ export default function MainContainer() {
                 </svg>
               </button>
               <span className="font-bold">{count}</span>
-              <button className="text-Orange bg-DarkBlue-600 p-3 rounded-md font-bold text-xl" onClick={handleIncrease}>
+              <button className="text-Orange bg-DarkBlue-600 p-3 rounded-md font-bold text-xl hover:opacity-65 transition-all duration-200" onClick={handleIncrease}>
                 <svg
                   width="12"
                   height="12"
