@@ -55,7 +55,7 @@ export default function Gallery({
             </div>
             <div className="flex justify-center items-center">
               <button
-                className="bg-white hover:text-Orange text-[#1D2026] transition-colors duration-200 h-10 w-10 flex absolute -left-5 justify-center items-center rounded-full"
+                className="bg-white hover:text-Orange text-[#1D2026] transition-colors duration-200 size-10 absolute -left-5 flex justify-center items-center rounded-full"
                 onClick={() => handleNavigation(-1)}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="18">
@@ -74,7 +74,7 @@ export default function Gallery({
                 className="w-[400px] rounded-xl"
               />
               <button
-                className="bg-white hover:text-Orange text-[#1D2026] transition-colors duration-200 h-10 w-10 flex absolute -right-5 justify-center items-center rounded-full"
+                className="bg-white hover:text-Orange text-[#1D2026] transition-colors duration-200 size-10 absolute -right-5 flex justify-center items-center rounded-full"
                 onClick={() => handleNavigation(1)}
               >
                 <svg
