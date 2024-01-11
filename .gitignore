@@ -152,8 +152,8 @@ dist
 # Serverless Webpack directories
 .webpack/
 
-pnpm-lock.yaml
-package-lock.json
+./pnpm-lock.yaml
+./package-lock.json
 
 # Optional stylelint cache
 
