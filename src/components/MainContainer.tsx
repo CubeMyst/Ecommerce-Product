@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navbar from "./Navbar";
 import Gallery from "./Gallery";
 import { useStore } from "../utils/CartContext";
+import useSeo from "../hooks/useSeo";
 
 const mainImageDefault = "src/assets/img/image-product-1.jpg";
 const discount = 0.5;
@@ -12,6 +13,12 @@ export default function MainContainer() {
   const [mount, setMount] = useState<number>(price);
   const [count, setCount] = useState<number>(1);
   const { items, addToCart, removeFromCart } = useStore();
+  useSeo(
+    {
+      title: `Sneaker Company - ${items.length} items in your cart`,
+      description: "Sneaker Company - Fall Limited Edition Sneakers",
+    }
+  )
 
   const handleThumbnailClick = (newImage: string) => {
     setMainImage(newImage);
