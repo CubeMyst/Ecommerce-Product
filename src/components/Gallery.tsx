@@ -36,7 +36,7 @@ export default function Gallery({
       <button className="" onClick={handleMainImageClick}>
         <img src={mainImage} className="w-80 rounded-xl" />
       </button>
-      {!isMainImageClicked && activeThumbnail >= 0 && (
+      {isMainImageClicked && activeThumbnail >= 0 && (
         <div className="fixed flex justify-center items-center z-10 top-0 left-0 w-full h-screen bg-black bg-opacity-70">
           <div className="flex justify-center items-center h-screen flex-col gap-5 max-w-4xl z-20 relative">
             <div className="absolute top-20 right-0">
