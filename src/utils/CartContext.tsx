@@ -1,31 +1,26 @@
-import { createContext, useContext, useReducer } from "react";
-import type { CartAction, CartContextType, CartProviderProps, CartState } from "../types/CartContextTypes";
+import { create } from 'zustand'
+import type { CartItem, CartState } from "../types/CartContextTypes";
 
-const CartContext = createContext<CartContextType | undefined>(undefined);
-
-function cartReducer(state: CartState, action: CartAction): CartState {
-  switch (action.type) {
-    case "ADD_TO_CART":
-      return { ...state, items: [...state.items, action.payload] };
-    default:
-      return state;
-  }
-}
-
-export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
-  const [state, dispatch] = useReducer(cartReducer, { items: [] });
-
-  return (
-    <CartContext.Provider value={{ state, dispatch }}>
-      {children}
-    </CartContext.Provider>
-  );
-};
-
-export const useCart = () => {
-  const context = useContext(CartContext);
-  if (!context) {
-    throw new Error("useCart debe ser utilizado dentro de un CartProvider");
-  }
-  return context;
-};
+export const useStore = create<CartState>((set) => ({
+  items: [],
+  addToCart: (item: CartItem) =>
+    set((state) => ({ items: [...state.items, item] })),
+  removeFromCart: (id: number) =>
+    set((state) => ({
+      items: state.items.filter((item) => item.id !== id),
+    })),
+  increment: (id: number) =>
+    set((state) => ({
+      items: state.items.map((item) =>
+        item.id === id ? { ...item, count: item.count + 1 } : item
+      ),
+    })),
+  decrement: (id: number) =>
+    set((state) => ({
+      items: state.items.map((item) =>
+        item.id === id && item.count > 1
+          ? { ...item, count: item.count - 1 }
+          : item
+      ),
+    })),
+}));
