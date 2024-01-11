@@ -1,22 +1,21 @@
 import { useState } from "react";
 import Navbar from "./Navbar";
 import Gallery from "./Gallery";
-import { useCart } from "../utils/CartContext";
+import { useStore } from "../utils/CartContext";
 
 const mainImageDefault = "src/assets/img/image-product-1.jpg";
 const discount = 0.5;
+const price = 250 * discount;
 
 export default function MainContainer() {
   const [mainImage, setMainImage] = useState(mainImageDefault);
-  const [mount, setMount] = useState<number>(250 * discount);
+  const [mount, setMount] = useState<number>(price);
   const [count, setCount] = useState<number>(1);
+  const { items, addToCart } = useStore();
 
   const handleThumbnailClick = (newImage: string) => {
     setMainImage(newImage);
   };
-
-  const { dispatch } = useCart();
-
 
   const handleAddToCart = () => {
     const newItem = {
@@ -24,21 +23,26 @@ export default function MainContainer() {
       name: "Fall Limited Edition Sneakers",
       img: "src/assets/img/image-product-1-thumbnail.jpg",
       nowPrice: mount,
+      price: price,
       count: count,
     };
 
-    dispatch({ type: "ADD_TO_CART", payload: newItem });
+    if (items.length > 0 && items.length < 2) {
+      addToCart(newItem)
+    } else {
+      alert("You can only add 2 items to the cart");
+    }
   };
 
   const handleIncrease = () => {
     setCount((prevCount) => prevCount + 1);
-    setMount((prevMount) => prevMount + (250 * discount));
+    setMount((prevMount) => prevMount + (price));
   };
 
   const handleDecrease = () => {
     if (count > 1) {
       setCount((prevCount) => prevCount - 1);
-      setMount((prevMount) => prevMount - (250 * discount));
+      setMount((prevMount) => prevMount - (price));
     }
   };
 
