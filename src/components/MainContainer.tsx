@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Gallery from "./Gallery";
 import { useCart } from "../utils/cartContext";
 
 const mainImageDefault = "src/assets/img/image-product-1.jpg";
+const discount = 0.5;
 
 export default function MainContainer() {
   const [mainImage, setMainImage] = useState(mainImageDefault);
+  const [mount, setMount] = useState<number>(250 * discount);
+  const [count, setCount] = useState<number>(1);
 
   const handleThumbnailClick = (newImage: string) => {
     setMainImage(newImage);
@@ -26,8 +29,20 @@ export default function MainContainer() {
     dispatch({ type: "ADD_TO_CART", payload: newItem });
   };
 
+  const handleIncrease = () => {
+    setCount((prevCount) => prevCount + 1);
+    setMount((prevMount) => prevMount + (250 * discount));
+  };
+
+  const handleDecrease = () => {
+    if (count > 1) {
+      setCount((prevCount) => prevCount - 1);
+      setMount((prevMount) => prevMount - (250 * discount));
+    }
+  };
+
   return (
-    <main className="mx-40 min-h-screen">
+    <main className="mx-40 h-screen overflow-hidden">
       <header className="">
         <Navbar />
       </header>
@@ -38,7 +53,7 @@ export default function MainContainer() {
             mainImage={mainImage}
           />
         </section>
-        <aside className="flex flex-col text-DarkBlue-900">
+        <article className="flex flex-col text-DarkBlue-900">
           <h4 className="text-Orange uppercase text-[12px] font-bold tracking-[2px]">
             Sneaker Company
           </h4>
@@ -50,16 +65,16 @@ export default function MainContainer() {
             Featuring a durable rubber outer sole, they’ll withstand everything
             the weather can offer.
           </p>
-          <div className="flex justify-start font-sans items-center gap-5">
-            <h3 className="font-bold text-2xl">$125.00</h3>
+          <section className="flex justify-start font-sans items-center gap-5">
+            <h3 className="font-bold text-2xl">${mount}.00</h3>
             <span className="bg-Orange bg-opacity-20 text-Orange rounded-md px-2 font-bold">
               50%
             </span>
-          </div>
-          <del className="opacity-30 font-bold pt-2 pb-8">$250.00</del>
-          <div className="flex justify-between w-full">
-            <div className="flex justify-center items-center gap-5 bg-DarkBlue-600 rounded-md">
-              <button className="text-Orange bg-DarkBlue-600 p-3 rounded-md font-bold text-xl">
+          </section>
+          <del className="opacity-30 font-bold pt-2 pb-8">${mount * 2}.00</del>
+          <section className="flex justify-between w-full">
+            <section className="flex justify-center items-center gap-5 bg-DarkBlue-600 rounded-md">
+              <button className="text-Orange bg-DarkBlue-600 p-3 rounded-md font-bold text-xl" onClick={handleDecrease}>
                 <svg width="12" height="4" xmlns="http://www.w3.org/2000/svg">
                   <defs>
                     <path
@@ -70,8 +85,8 @@ export default function MainContainer() {
                   <use fill="#FF7E1B" fill-rule="nonzero" href="#a" />
                 </svg>
               </button>
-              <span className="font-bold">3</span>
-              <button className="text-Orange bg-DarkBlue-600 p-3 rounded-md font-bold text-xl">
+              <span className="font-bold">{count}</span>
+              <button className="text-Orange bg-DarkBlue-600 p-3 rounded-md font-bold text-xl" onClick={handleIncrease}>
                 <svg
                   width="12"
                   height="12"
@@ -87,9 +102,9 @@ export default function MainContainer() {
                   <use fill="#FF7E1B" fill-rule="nonzero" href="#b" />
                 </svg>
               </button>
-            </div>
+            </section>
             <button
-              className="flex gap-3 px-16 font-bold bg-Orange text-white rounded-lg hover:bg-opacity-70 py-3"
+              className="flex gap-3 px-16 font-bold bg-Orange text-white rounded-lg hover:bg-opacity-70 py-3 transition-colors duration-200"
               onClick={handleAddToCart}
             >
               <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
@@ -101,8 +116,8 @@ export default function MainContainer() {
               </svg>
               Add to cart
             </button>
-          </div>
-        </aside>
+          </section>
+        </article>
       </div>
     </main>
   );
