@@ -6,3 +6,7 @@
     font-family: 'Kumbh';
     src: url(./assets/font/KumbhSans.ttf), format('opentype');
 }
+
+button, button::after, button::before {
+    outline: none;
+}
