@@ -2,7 +2,7 @@ export default function NavItem(
   { href, text }: { href: string, text: string }
 ) {
   return (
-    <li className="group">
+    <li className="group hover:[a:_opacity:0]">
       <a href={href} className="relative hover:opacity-100 transition-opacity duration-200 opacity-60">
         {text}
       </a>
