@@ -1,4 +1,3 @@
-import { CartProvider } from "./utils/CartContext";
 import MainContainer from "./components/MainContainer";
 
 // const thumbnailImages = [
@@ -10,8 +9,6 @@ import MainContainer from "./components/MainContainer";
 
 export default function App() {
   return (
-    <CartProvider>
-      <MainContainer />
-    </CartProvider>
+    <MainContainer />
   );
 }
