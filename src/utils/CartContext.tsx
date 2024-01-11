@@ -1,38 +1,7 @@
-/* eslint-disable react-refresh/only-export-components */
-// cartContext.tsx
-
-import React, {
-  createContext,
-  useContext,
-  ReactNode,
-  useReducer,
-  Dispatch,
-} from "react";
-
-interface CartItem {
-  id: number;
-  name: string;
-  img: string;
-  nowPrice: number;
-  count: number;
-}
-
-interface CartState {
-  items: CartItem[];
-}
-
-type CartAction = { type: "ADD_TO_CART"; payload: CartItem };
-
-interface CartContextType {
-  state: CartState;
-  dispatch: Dispatch<CartAction>;
-}
+import { createContext, useContext, useReducer } from "react";
+import type { CartAction, CartContextType, CartProviderProps, CartState } from "../types/CartContextTypes";
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
-
-interface CartProviderProps {
-  children: ReactNode;
-}
 
 function cartReducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
