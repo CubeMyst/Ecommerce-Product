@@ -4,7 +4,7 @@ import Gallery from "./Gallery";
 import { useStore } from "../utils/CartContext";
 import useSeo from "../hooks/useSeo";
 
-const mainImageDefault = "src/assets/img/image-product-1.jpg";
+const mainImageDefault = "/img/image-product-1.jpg";
 const discount = 0.5;
 const price = 250 * discount;
 
@@ -28,7 +28,7 @@ export default function MainContainer() {
     const newItem = {
       id: 0,
       name: "Fall Limited Edition Sneakers",
-      img: "src/assets/img/image-product-1-thumbnail.jpg",
+      img: "/img/image-product-1-thumbnail.jpg",
       nowPrice: mount,
       price: price,
       count: count,

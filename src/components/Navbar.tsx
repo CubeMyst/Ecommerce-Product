@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Logo } from "../assets/icons/Icons";
+import { Logo } from "../../public/icons/Icons";
 import NavItem from "./NavItem";
 import CartModal from "./CartModal";
 import { useStore } from "../utils/CartContext";
@@ -45,7 +45,7 @@ export default function Navbar() {
           </button>
           <button className="border-2 rounded-full transition-all duration-200 hover:border-Orange">
             <img
-              src="src/assets/img/image-avatar.png"
+              src="/img/image-avatar.png"
               className="w-12"
               alt="User Avatar"
             />

@@ -6,7 +6,7 @@ interface GalleryProps {
   handleThumbnailClick: (newImage: string) => void;
 }
 
-const baseImagePath = "src/assets/img/";
+const baseImagePath = "/img/";
 
 export default function Gallery({
   mainImage,
@@ -69,7 +69,7 @@ export default function Gallery({
                 </svg>
               </button>
               <img
-                src={baseImagePath + `image-product-${activeThumbnail + 1}.jpg`}
+                src={`${baseImagePath}image-product-${activeThumbnail + 1}.jpg`}
                 alt={`Thumbnail ${activeThumbnail + 1}`}
                 className="w-[400px] rounded-xl"
               />
