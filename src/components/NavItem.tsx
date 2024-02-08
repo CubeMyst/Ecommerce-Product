@@ -2,11 +2,11 @@ export default function NavItem(
   { href, text }: { href: string, text: string }
 ) {
   return (
-    <li className="group hover:[a:_opacity:0]">
+    <li className="[&>a>div]:hover:bg-Orange flex flex-col items-end justify-end">
       <a href={href} className="relative hover:opacity-100 transition-opacity duration-200 opacity-60">
         {text}
+        <div className="border-transparen absolute -bottom-[27px]  duration-200 transition-all h-1 w-full"></div>
       </a>
-      <div className="border-b-[4px] border-transparent group-hover:border-Orange duration-200 transition-all h-full w-full"></div>
     </li>
   )
 }

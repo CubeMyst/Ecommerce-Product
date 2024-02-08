@@ -17,6 +17,11 @@ export interface CartItem {
 
 export interface CartState {
   items: CartItem[];
+  discount: number;
+  price: number;
+  count: number;
+  setPrice: (newPrice: number) => void;
+  setCount: (newCount: number) => void;
   addToCart: (item: CartItem) => void;
   removeFromCart: (id: number) => void;
   increment: (id: number) => void;

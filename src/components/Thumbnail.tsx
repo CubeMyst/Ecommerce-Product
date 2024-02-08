@@ -14,7 +14,7 @@ export default function ThumbnailItem({
   return (
     <button
       onClick={onClick}
-      className={`w-16 overflow-hidden rounded-lg border-2 relative ${
+      className={`w-20 overflow-hidden rounded-lg border-2 relative ${
         isActive ? "border-Orange" : "border-transparent"
       }`}
     >

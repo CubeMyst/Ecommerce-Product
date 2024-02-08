@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Thumbnail from "./Thumbnail";
 
+import { FaAngleLeft, FaAngleRight, FaXmark } from "react-icons/fa6";
+
 interface GalleryProps {
   mainImage: string;
   handleThumbnailClick: (newImage: string) => void;
@@ -32,9 +34,9 @@ export default function Gallery({
   };
 
   return (
-    <div className="flex flex-col gap-5 max-w-4xl">
+    <div className="flex flex-col items-center gap-5 max-w-4xl">
       <button className="" onClick={handleMainImageClick}>
-        <img src={mainImage} className="w-80 rounded-xl" />
+        <img src={mainImage} className="w-[450px] rounded-xl" />
       </button>
       {isMainImageClicked && activeThumbnail >= 0 && (
         <div className="fixed flex justify-center items-center z-10 top-0 left-0 w-full h-screen bg-black bg-opacity-70">
@@ -42,15 +44,9 @@ export default function Gallery({
             <div className="absolute top-20 right-0">
               <button
                 onClick={handleMainImageClick}
-                className="text-white hover:text-Orange transition-colors duration-200"
+                className="text-white hover:text-Orange transition-colors duration-200 absolute top-24 -left-5"
               >
-                <svg width="14" height="15" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z"
-                    fill="currentColor"
-                    fill-rule="evenodd"
-                  />
-                </svg>
+                <FaXmark className="size-7" />
               </button>
             </div>
             <div className="flex justify-center items-center">
@@ -58,15 +54,7 @@ export default function Gallery({
                 className="bg-white hover:text-Orange text-[#1D2026] transition-colors duration-200 size-10 absolute -left-5 flex justify-center items-center rounded-full"
                 onClick={() => handleNavigation(-1)}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="18">
-                  <path
-                    d="M11 1 3 9l8 8"
-                    stroke="currentColor"
-                    stroke-width="3"
-                    fill="none"
-                    fill-rule="evenodd"
-                  />
-                </svg>
+                <FaAngleLeft className="size-6" />
               </button>
               <img
                 src={`${baseImagePath}image-product-${activeThumbnail + 1}.jpg`}
@@ -77,24 +65,11 @@ export default function Gallery({
                 className="bg-white hover:text-Orange text-[#1D2026] transition-colors duration-200 size-10 absolute -right-5 flex justify-center items-center rounded-full"
                 onClick={() => handleNavigation(1)}
               >
-                <svg
-                  width="13"
-                  height="18"
-                  fill="CurrentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="m2 1 8 8-8 8"
-                    stroke="currentColor"
-                    stroke-width="3"
-                    fill="none"
-                    fill-rule="evenodd"
-                  />
-                </svg>
+                <FaAngleRight className="size-6" />
               </button>
             </div>
 
-            <div className="flex justify-between w-80">
+            <div className="flex justify-between gap-2">
               {[1, 2, 3, 4].map((index) => (
                 <Thumbnail
                   key={index}
@@ -112,7 +87,7 @@ export default function Gallery({
           </div>
         </div>
       )}
-      <div className="flex justify-between w-80">
+      <div className="flex justify-between gap-6">
         {[1, 2, 3, 4].map((index) => (
           <Thumbnail
             key={index}
